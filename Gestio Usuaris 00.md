@@ -22,11 +22,11 @@ Amenaces fraudulentes: Violacione de datos por parte de usuarios autorizados.
 
 ### 1.1.3 Nivells de seguretat
 
-1.SGBD: Pass, roles autorizados de usuarios.
-1.Sitemas Operativos: Acreditacion
-1.Xarxa/Redes
-1.Fisico
-1.Humano
+1. SGBD: Pass, roles autorizados de usuarios.
+1. Sitemas Operativos: Acreditacion
+1. Xarxa/Redes
+1. Fisico
+1. Humano
 
 ### 1.1.4 Mecanismes bàsics de seguretat de l’SGBD
 
