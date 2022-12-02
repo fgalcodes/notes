@@ -1,6 +1,5 @@
 # Gestio d'usuaris i privilegis
 ## 1.1 Introduccion a los problemas de seguiridad
-
 ### 1.1.1 Conceptes associats a la seguretat
 
 1. Confidencialitat: solo tien acceso para un grupo de usuarios.
@@ -166,17 +165,38 @@ TO { [ GROUP ] role_name | PUBLIC } [, ...] [ WITH GRANT OPTION ]
 GRANT ALL [ PRIVILEGES ] on tabla to usr1;
 ***
 
-
-
 #### Privilegis d’objectes de bases de dades
 **Són:** *bases de dades, espai per a taules (tablespace), les taules, índexs, triggers (disparadors).*
 
-
 #### Privilegis de sistema
-> *Para administradores
+> Para administradores
 
 #### Privilegis per a tothom
-> *Todo que sea to PUBLIC*
+> Todo que sea to PUBLIC
 
 ### 1.5.2 Retirar privilegis
 #### Privilegis sobre programes i procediments
+***
+REVOKE UPDATE on Llibres (isbn) FROM usuari;
+***
+
+## 1.6 Legislació sobre protecció de dades
+> Los datos personales son **SAGRADOS**.
+
+# Vistes i regles
+## 2.1 Concepte de vista
+La sentència CREATE VIEW és la instrucció proporcionada pel llenguatge SQL per a la creació de vistes mitjançant d'una consulta SELECT complexa.
+> CREATE VIEW as Preview (QL);
+
+## 2.2 Vistes del sistema
+> Todo dentro de pg_taules
+
+## 2.3 Avantatges i desavantatges en l’ús de les vistes
+
+1. Ventajas: Seguretat, simplicitat, organtzacio, exactitud.
+1. Desventajas: Dependera del moto propio de la BD, pero siempre diremos que no hay desventajas.
+> En PostgreSQL, les vistes no són actualitzables; no és possible fer INSERT, DELETE ni UPDATE sobre les vistes.
+
+## 2.4 Vistes actualitzables
+També volem crear nous clients i línies, i a més poder modificar les dades tant de la línia com del client, emprant aquesta vista.
+![create sequence](https://i.imgur.com/bct2EeM.png)
