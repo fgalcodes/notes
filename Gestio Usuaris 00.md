@@ -146,3 +146,37 @@ cop:
 ***
 GRANT ALL_PRIVILEGES ON table1 to usr1;
 ***
+
+> Objeto = Tabla
+
+### 1.5.1 Tipus de privilegis
+**Se clasifican en:** *Connexió a la BD, Taules, Objectes de la BD, Sistema, Programa, Programes emmagatzemats.*
+
+#### Privilegis de taules
+**Són:** *SELECT:, INSERT, UPDATE, DELETE, ALL, REFERENCES(FK):permet referenciar mitjançant restriccions de clau forana a una taula de la qual l’usuari no és propietari.*.
+
+***
+GRANT { { SELECT | INSERT | UPDATE | REFERENCES } ( column [, ...] )[,...] | ALL [ PRIVILEGES ] ( column [, ...] ) }
+ON [ TABLE ] table_name [, ...]
+TO { [ GROUP ] role_name | PUBLIC } [, ...] [ WITH GRANT OPTION ]
+***
+> Que es lo mismo que:
+
+***
+GRANT ALL [ PRIVILEGES ] on tabla to usr1;
+***
+
+
+
+#### Privilegis d’objectes de bases de dades
+**Són:** *bases de dades, espai per a taules (tablespace), les taules, índexs, triggers (disparadors).*
+
+
+#### Privilegis de sistema
+> *Para administradores
+
+#### Privilegis per a tothom
+> *Todo que sea to PUBLIC*
+
+### 1.5.2 Retirar privilegis
+#### Privilegis sobre programes i procediments
