@@ -72,3 +72,21 @@ Como identificamos el fin de una transaccion:
 ![Rollback](https://i.imgur.com/OuuUJPo.png)
 ![Savepoint](https://i.imgur.com/7fiPtXq.png)
 
+### 1.3.3 Nivells d’aïllament (transaccions)
+Això determina quines dades podem veure de la transacció quan altres transaccions estan funcionant en el mateix moment.
+
+- READ COMMITTED (defecte), quan una transacció només pot veure els canvis confirmats abans que ella comenci.
+
+### 1.3.5 Bloquejos
+Hi ha dos tipus de bloquejos:
+- El **bloqueig compartit,** que permet a altres usuaris llegir, però no actualitzar les dades.
+- El **bloqueig exclusiu,** que impedeix altres transaccions, fins i tot la lectura de les dades.
+
+#### Abraçades mortals
+A PostgreSQL, quan una transacció no pot adquirir el bloqueig sol·licitat en un període de temps determinat.
+
+#### Bloqueig explícit
+Un cop finalitzi la transacció, ja sigui amb un COMMIT o ROLLBACK, tots els bloquejos adquirits durant l’operació s’alliberaran automàticament.
+
+#### Bloquejos a escala de fila
+Per bloquejar un conjunt de files, simplement emetem una instrucció SELECT query FOR UPDATE.
