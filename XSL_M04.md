@@ -144,4 +144,9 @@ En las condiciones se pueden utilizar:
 - operadores aritméticos: +, -, *, div, mod
 - operadores de comparación: =, !=, <, >, <=, >=
 
+Combinaciones: 
+- /classe/professor[@Especialidad=615 and nom=”Marcel”]
+
+## XSLT (eXtensible Stylesheet Language Transform)
+
 
