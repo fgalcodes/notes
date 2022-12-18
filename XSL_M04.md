@@ -173,7 +173,7 @@ Funcionamiento:
 - XSLT funciona en la mayoría de navegadores.
 - Una de la limitaciones de XSLT es que el documento de entrada tiene que ser un XML. La salida puede ser cualquier formato, XML y derivados, CSV, JSON ...
 
-### XSLT: declaración del archivo
+### XSLT declaración del archivo
 
 Una hoja de estilo XSLT es un documento XML que contiene al menos las etiquetas siguientes:
 
@@ -187,7 +187,7 @@ Estas etiquetas son:
 - La declaración xml <?xml>, propia de cualquier documento XML.
 - La instrucción <xsl:stylesheet> es la etiqueta raíz de la hoja de estilo, sus atributos indican la versión y el espacio de nombres correspondiente.
 
-### XSLT: instrucciones
+### XSLT instrucciones
 
 El contenido de la instrucción define la transformación a aplicar, disponemos de:
 
