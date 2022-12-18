@@ -9,7 +9,7 @@ Sabemos que DTD y XSD nos ayudan a definir la estructura que tendrá nuestro XML
 > Podemos utilizar CSS para diseñar un XML. 
 ![img pendiente]()
 
-# XSL (xslt, xpath)
+# XSL (xpath, xslt)
 
 Para tratar de hacer todo lo que CSS no podía se creó un nuevo lenguaje de plantillas: XSL (eXtensible Stylesheet Language).
 
@@ -18,10 +18,6 @@ Para aclarar terminología, XSL es un estándar que consiste en:
 - XSLT: Lenguaje para transformar documentos XML en **otro formato** (otro XML, HTML, DHTML, texto plano, PDF, RTF, Word, etc.).
 - XPath: Lenguaje de consulta genérico para identificar (y seleccionar) elementos de un documento XML.
 - XSL-FO: Especificación para convertir XML a formatos binarios (PDF,  Word, imágenes, etc.) y lenguaje de estilos que permite obtener ficheros para imprimir. 
-
-## XSLT (eXtensible Stylesheet Language Transform)
-
-El lenguaje XSLT no es sólo un lenguaje para visualizar documentos, sino en general para transformarlos y manipularlos. Esta manipulación la gestiona un programa especial que se llama procesador XSLT; el **xsltproc.**
 
 ## XPath (XML Path Language)
 
@@ -38,7 +34,7 @@ En XPath no sólo los elementos de un XML son nodos, en realidad hay siete tipos
 1. Instrucción de procesamiento
 1. Espacio de nombres
 
-## XPath: Sintaxis
+### XPath: Sintaxis
 
 ![imagen de ejemplos pendiente]()
 
@@ -71,7 +67,7 @@ Set contains 2 nodes:
 2  ELEMENT nom
 ```
 
-### Sintaxis: árbol
+#### Sintaxis: árbol
 
 - El resultado puede dar un arbol valido para ser un XML.
 
@@ -115,7 +111,7 @@ xmllint --shell classe.xml
 > Usamos // para indicar que hay nodos pero no 
 sabemos cuales.
 
-### Sintaxis: (@)atributos y (*) comodín
+#### Sintaxis: (@)atributos y (*) comodín
 
 - También podemos buscar por nombre de atributos (@nomAtributo). 
 
@@ -125,7 +121,7 @@ xmllint --shell classe.xml
 Especialitat="507"
 ```
 
-## Xpath: Sintaxis [Predicado]
+### Xpath: Sintaxis [Predicado]
 
 Podemos añadir condiciones para la selección de nodos. Dicha selección se hace especificando un predicado entre corchetes [].
 
@@ -144,9 +140,54 @@ En las condiciones se pueden utilizar:
 - operadores aritméticos: +, -, *, div, mod
 - operadores de comparación: =, !=, <, >, <=, >=
 
+Condiciones según valor de elemento:
+- Las condiciones pueden estar en cualquier lugar del camino y tantas como queramos. Para obtener el profesor que se llame Marcel:
+```
+/classe/professor[nom=”Marcel”]
+<professor especialitat="507">
+<nom>Marcel</nom>
+<cognoms>Puig</cognoms>
+</professor>
+```
+- Para obtener el apellido del profesor que se llame Marcel:
+```
+/classe/professor[nom=”Marcel”]/cognoms
+<cognoms>Puig</cognoms>
+```
 Combinaciones: 
 - /classe/professor[@Especialidad=615 and nom=”Marcel”]
 
 ## XSLT (eXtensible Stylesheet Language Transform)
 
+El lenguaje XSLT no es sólo un lenguaje para visualizar documentos, sino en general para transformarlos y manipularlos. Esta manipulación la gestiona un programa especial que se llama procesador XSLT; el **xsltproc.**
+
+- Permite transformar un documento en otro tipo de documento (HTML, PDF, XML, etc)
+- Permite añadir o eliminar elementos y atributos en el archivo de salida.
+- También cambiar el orden o decidir qué elementos mostrar y cuáles no.
+
+> XSLT es un **lenguaje declarativo**. Por ello, las hojas de estilo XSLT no se escriben como una secuencia de instrucciones, sino como una colección de plantillas (template rules).
+
+Funcionamiento:
+- Utiliza el XPath para navegar en el documento XML.
+- Durante el proceso de transformación, también usa XPath para definir la partes de un documento origen que coincidan con una o más plantillas determinadas.
+- XSLT funciona en la mayoría de navegadores.
+- Una de la limitaciones de XSLT es que el documento de entrada tiene que ser un XML. La salida puede ser cualquier formato, XML y derivados, CSV, JSON ...
+
+### XSLT: declaración del archivo
+
+Una hoja de estilo XSLT es un documento XML que contiene al menos las etiquetas siguientes:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+</xsl:stylesheet>
+```
+
+Estas etiquetas son:
+- La declaración xml <?xml>, propia de cualquier documento XML.
+- La instrucción <xsl:stylesheet> es la etiqueta raíz de la hoja de estilo, sus atributos indican la versión y el espacio de nombres correspondiente.
+
+### XSLT: sentencias
+
+Disponemos de: template, value-of, for-each, sort, if, choose, apply templates.
 
