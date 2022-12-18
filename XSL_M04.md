@@ -187,7 +187,33 @@ Estas etiquetas son:
 - La declaración xml <?xml>, propia de cualquier documento XML.
 - La instrucción <xsl:stylesheet> es la etiqueta raíz de la hoja de estilo, sus atributos indican la versión y el espacio de nombres correspondiente.
 
-### XSLT: sentencias
+### XSLT: instrucciones
 
-Disponemos de: template, value-of, for-each, sort, if, choose, apply templates.
+El contenido de la instrucción define la transformación a aplicar, disponemos de:
 
+- template
+- value-of 
+- for-each 
+- sort
+- if
+- choose 
+- apply templates
+
+#### xsl:template
+
+El elemento plantilla se define como
+<xsl:template match="ExpresiónXPath">
+
+- El atributo match indica la ruta de los elementos afectados por la plantilla y contiene una expresión XPath.
+- La transformación debe estar dónde está el template.
+
+#### xsl:value-of
+
+El elemento valor de se define como
+<xsl:value-of select="ExpresiónXPath">
+
+- Permite extraer el valor de un elemento XML y añadirlo en el archivo de salida.
+- Es posible utilizar expresiones XPath complejas para seleccionar elementos.
+- Podemos usar select=".” para obtener todo los elementos del nodo actual, indicado en el template.
+- Podemos usar select="@NombreAtributo” para obtener el valor de un atributo
+- Podemos hacer operaciones directamente durante la selección select="precio*1.18”
