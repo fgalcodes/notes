@@ -191,13 +191,13 @@ Estas etiquetas son:
 
 El contenido de la instrucción define la transformación a aplicar, disponemos de:
 
-- template
-- value-of 
-- for-each 
-- sort
-- if
-- choose 
-- apply templates
+1. template
+1. value-of 
+1. for-each 
+1. sort
+1. if
+1. choose 
+1. apply templates
 
 #### xsl:template
 
