@@ -147,3 +147,52 @@ Valor d’una variable exemples:
 A partir d’altres dades (variables però no constants) o columnes de taules o vistes de la base de dades.
 
 - %TYPE proporciona el tipus de dada d’una variable o columna d’una taula.
+
+### 2.5 Paràmetres d’una funció
+Els paràmetres que passem a les funcions són anomenats amb els identificadors $1, $2, etc.
+
+Hi ha dues maneres de crear un àlies. La millor manera és donar un nom al paràmetre en la sentència CREATE FUNCTION; per exemple:
+```
+1 CREATE FUNCTION sales_tax(subtotal real) RETURNS real AS $$
+2 BEGIN
+3 RETURN subtotal * 0.06;
+4 END;
+5 $$ LANGUAGE plpgsql;
+```
+L’altra forma, seria com això que ve a continuació:
+```
+1 CREATE FUNCTION sales_tax(real) RETURNS real AS $$
+2 DECLARE
+3 subtotal ALIAS FOR $1;
+4 BEGIN
+5 RETURN subtotal * 0.06;
+6 END;
+7 $$ LANGUAGE plpgsql;
+```
+L’exemple anterior, d’impostos sobre vendes, també es podria fer d’aquesta manera:
+```
+1 CREATE FUNCTION sales_tax(subtotal real, OUT tax real) AS $$
+2 BEGIN
+3 tax := subtotal * 0.06;
+4 END;
+5 $$ LANGUAGE plpgsql;
+```
+Els paràmetres de sortida són més útils, ja que es fa retorn de valors múltiples. Un exemple trivial és el següent:
+```
+1 CREATE FUNCTION sum_n_product(x int, y int, OUT sum int, OUT prod int) AS $$
+2 BEGIN
+3 sum := x + y;
+4 prod := x * y;
+5 END;
+6 $$ LANGUAGE plpgsql;
+```
+Una altra manera de declarar una funció PL/PgSQL és amb RETURNS TABLE; per exemple:
+```
+1 CREATE FUNCTION extended_sales(p_itemno int)
+2 RETURNS TABLE(quantity int, total numeric) AS $$
+3 BEGIN
+4 RETURN QUERY SELECT quantity, quantity * price FROM sales
+5 WHERE itemno = p_itemno;
+6 END;
+7 $$ LANGUAGE plpgsql;
+```
