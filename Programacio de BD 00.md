@@ -90,3 +90,60 @@ Un cop finalitzi la transacció, ja sigui amb un COMMIT o ROLLBACK, tots els blo
 
 #### Bloquejos a escala de fila
 Per bloquejar un conjunt de files, simplement emetem una instrucció SELECT query FOR UPDATE.
+
+## 2 PL/PgSQL: extensió procedimental del llenguatge SQL
+### 2.2 Estructura de PL/PgSQL
+Un bloc es defineix de la manera següent:
+```
+1 [ <<etiqueta>> ]
+2 [ DECLARE
+3 <declaracions de constants i variables>]
+4 BEGIN
+5 <sentències executables>;
+6 [EXCEPTION
+7 <declaració d’excepcions>;]
+8 END [ etiqueta ];
+```
+Fixem-nos que consta de tres zones clarament diferenciades, de les quals una és obligatòria: la zona BEGIN ... END (zona d’execució); La zona DECLARE i La zona EXCEPTION.
+
+- Es pot crear o anidar blocs dintre de altres blocs.
+- Podem crear etiquetes per identificar els blocs.
+
+> SQL es un llengutaje case insensitive.
+
+### 2.3 Creació de funcions
+La sentència CREATE FUNCTION requereix, com a mínim:
+
+- Un nom per a la funció.
+- El nombre d’arguments (paràmetres).
+- El tipus de cada argument.
+- El tipus de retorn de la funció.
+- L’acció (el programa com a tal).
+- El llenguatge que utilitza.
+
+### 2.4 Declaracions de variables
+Les variables PL/PgSQL poden tenir qualsevol tipus de dades SQL, com per exemple integer, varchar i char.
+
+Aquí tenim alguns exemples de declaració de variables:
+```
+1 user_id integer;
+2 quantity numeric(5);
+3 url varchar;
+4 myrow tablename%ROWTYPE;
+5 myfield tablename.columnname%TYPE;
+6 arow RECORD;
+```
+Valor d’una variable exemples:
+```
+1 quantity integer DEFAULT 32;
+2 url varchar := 'http://mysite.com';
+3 user_id CONSTANT integer := 10;
+```
+> Per asignar valors a una variable en SQL ho farem mitjançant el operador ':='
+
+#### 2.4.2 Declaració de variables a partir de tipus de dades preexistents
+
+**Copiant tipus preexistents**
+A partir d’altres dades (variables però no constants) o columnes de taules o vistes de la base de dades.
+
+- %TYPE proporciona el tipus de dada d’una variable o columna d’una taula.
