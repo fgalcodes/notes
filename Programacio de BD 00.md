@@ -203,3 +203,41 @@ Una altra manera de declarar una funció PL/PgSQL és amb RETURNS TABLE; per exe
 El paràmetre especial $0. Aquest tipus de dada correspon al tipus actual de retorn de la funció.
 
 > Los datos puden adoptar multiples tipos de datos.
+
+## 2.7 Assignacions
+L’assignació d’un valor a una variable PL/PgSQL s’escriu de la manera següent :
+```
+1 nom_variable := expressio;
+```
+Tambe la destinacio de la variable pot ser un camp d’una fila, registre, un element d’una matriu o un camp.
+```
+1 tax := subtotal * 0.06;
+2 my_record.user_id := 20;
+```
+
+### 2.8 Estructures condicionals
+Utilitzant les sentències IF i CASE podem executar funcions alternatives basades en certes condicions.
+
+#### 2.8.1 Alternativa simple (IF-THEN)
+Si la condició es compleix s’executen les instruccions que segueixen la clàusula THEN.
+```
+1 if <condició> then
+2 <conjunt_de_sentències_si_la_condició_s’avalua_com_a_certa>;
+3 end if;
+```
+
+#### 2.8.4 CASE simple
+L’expressió de cerca és avaluada un cop i comparada
+successivament en cada expressió dins de les clàusules WHEN.
+```
+1 CASE expressio−de−cerca
+2 WHEN expressio [, expressio [ ... ]] THEN
+3 sentències
+4 [ WHEN expressio [, expressio [ ... ]] THEN
+5 sentències
+6
+7 ... ]
+8 [ ELSE
+9 sentències ]
+10 END CASE;
+```
