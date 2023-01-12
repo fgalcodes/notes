@@ -196,3 +196,10 @@ Una altra manera de declarar una funció PL/PgSQL és amb RETURNS TABLE; per exe
 6 END;
 7 $$ LANGUAGE plpgsql;
 ```
+
+### 2.6 Sobrecàrrega de funcions i funcions polimòrfiques
+
+#### 2.6.2 Funcions polimòrfiques
+El paràmetre especial $0. Aquest tipus de dada correspon al tipus actual de retorn de la funció.
+
+> Los datos puden adoptar multiples tipos de datos.
